@@ -1,0 +1,39 @@
+{% extends 'mybase.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}{{ item.name }}{% endblock %}
+
+{% block content %}
+
+<div class="back-button">
+    <a href="/" class="back-button-text"><p>&larr; Back</p></a>
+</div>
+<img src="{{ url_for('static', filename=item.picture) }}" height="300" width="500" class="product-image">
+<div class="item-info">
+    
+    
+    <h1>{{ item.name }}</h1>
+    <p>£{{ "%.2f"|format(item.price) }}</p>
+    <p>{{ item.description }}</p>
+    <p class="env_impact">{{ item.env_impact }} grams of CO<sub>2</sub> were emitted to make this procduct.</p>
+    <br>
+    {% if current_user.is_authenticated == False %}
+    <div class="btn">
+        <a class="btn-text" href="/log-in">Log in to add to basket</a>
+    </div>  
+    {% elif in_basket == False %}
+    <form class="basket-form form" method="POST">
+        {{ add_form.quantity.label(class="form-add-basket") }}
+        {{ add_form.quantity(class="form-control form-add-basket") }}
+        {{ wtf.form_field(add_form.submit) }}
+    </form>
+    {% else %}
+    <form class="basket-form form" method="POST">
+        {{ wtf.form_field(remove_form.submit) }}
+    </form>
+    {% endif %}
+
+</div>
+
+
+{% endblock %}

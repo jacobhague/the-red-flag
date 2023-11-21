@@ -1,0 +1,41 @@
+{% extends 'mybase.html' %}
+
+{% block title %}Basket{% endblock %}
+
+{% block content %}
+
+<div class="back-button">
+    <a href="/" class="back-button-text"><p>&larr; Back</p></a>
+</div>
+
+{% if empty %}
+<h1>Your basket is empty.</h1>
+{% else %}
+<table class="table">
+    <tbody>
+        <th></th><th></th><th></th><th><p>Total: £{{ total }}</p></th>
+        <th>
+            <div class="btn">
+                <a class="btn-text" href="/checkout">Checkout</a>
+            </div> 
+        </th>
+        {% for item in items %}
+        <a href="/item/{{ item.name_nospaces }}" class="product-box">
+            <tr>
+                <td><img src="{{ url_for('static', filename=item.picture) }}" height="100" width="100" class="product-image"></td>
+                <td><p class="product-text">{{ item.name }}</p></td>
+                <td><p class="product-text">x{{ item.quantity }}</p></td>
+                <td><p class="product-text">£{{ "%.2f"|format(item.price) }}</p></td>
+                <td>
+                    <form class="basket-form form" method="POST">
+                        <input class="btn btn-default" id="submit" name="submit{{ item.id }}" type="submit" value="Remove from basket">
+                    </form>
+                </td>
+            </tr>
+        </a>
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+
+{% endblock %}

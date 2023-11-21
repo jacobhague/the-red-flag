@@ -1,0 +1,47 @@
+{% extends "mybase.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<div class="banner">
+    <img src="/static/banner.jpg" class="banner-image">
+</div>
+
+<table class="table table-hover">
+    <tbody>
+        {% for item in items %}
+        
+            <tr>
+                
+                <td><a href="/item/{{ item.name_nospaces }}" class="product-box"><img src="{{ url_for('static', filename=item.picture) }}" height="100" width="100" class="product-image"></a></td>
+                <td><a href="/item/{{ item.name_nospaces }}" class="product-box"><p class="product-text">{{ item.name }}</p></a></td>
+                <td><a href="/item/{{ item.name_nospaces }}" class="product-box"><p class="product-text">£{{ "%.2f"|format(item.price) }}</p></a></td>
+                <td><a href="/item/{{ item.name_nospaces }}" class="product-box"><p class="product-text">{{ item.env_impact }}g</p></a></td>
+                <td>
+                    {% if current_user.is_authenticated == False %}
+                    <div class="btn">
+                        <a class="btn-text" href="/log-in">Log in to add to basket</a>
+                    </div>
+                    {% endif %}  
+                    {% if item.in_basket == False %}
+                    <form class="basket-form form" method="POST">
+                        {{ item.form.quantity.label(class="form-add-basket") }}
+                        {{ item.form.quantity(class="form-control form-add-basket") }}
+                        <input class="btn btn-default" id="submit" name="submit{{ item.id }}" type="submit" value="Add to basket">
+                    </form>
+                    {% endif %}
+                    {% if item.in_basket %}
+                    <form class="basket-form form" method="POST">
+                        <input class="btn btn-default" id="submit" name="submit{{ item.id }}" type="submit" value="Remove from basket">
+                    </form>
+                    {% endif %}
+                </td>
+            </tr>
+        
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

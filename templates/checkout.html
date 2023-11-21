@@ -1,0 +1,21 @@
+{% extends "mybase.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Checkout{% endblock %}
+
+{% block content %}
+{% if dispatched %}
+
+<div class="dispatched-info">
+    <h1>Your items have been dispatched.*</h1>
+    <p style="color: #ff0000;">*Disclaimer: Your items have not been dispatched this is not a real shop.</p>
+</div>
+
+{% else %}
+
+<div class="form-container">
+    {{ wtf.quick_form(form) }}
+</div>
+
+{% endif %}
+{% endblock %}

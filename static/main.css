@@ -1,0 +1,109 @@
+@font-face {
+    font-family: Konstructor;
+    src: url(konstruktor.otf);
+}
+
+.logo {
+    font-family: Konstructor;
+    color: #ff0000;
+    font-size: 3em;
+    margin-right: auto;
+}
+
+.logo:hover {
+    color: #ff0000;
+}
+
+.form-container {
+    margin: auto;
+    width: 600px;
+}
+
+.form-signin {
+    margin: auto;
+    padding: 30px;
+    width: 300px;
+}
+
+.btn {
+    color: #ffffff;
+    background-color: #ff0000;
+}
+
+.btn-text {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.btn:hover {
+    color: #ffffff;
+    background-color: #b90000;
+}
+
+.product-image {
+    object-fit: contain;
+    margin-right: 10px;
+
+}
+
+.product-text {
+    display: inline-block;
+}
+
+.product-box {
+    text-decoration: none;
+}
+
+.back-button {
+    
+    margin: 20px;
+}
+
+.back-button-text {
+    color: #ff0000;
+}
+
+.item-info {
+    margin-left: 20px;
+    word-wrap: normal;
+    display: inline-block;
+}
+
+.env_impact {
+    color: var(--bs-green);
+    font-size: 0.75em;
+}
+
+table {
+    text-align: center;
+    width: auto;
+}
+td {
+    vertical-align: middle;
+}
+
+.form-add-basket {
+    display: inline;
+    width: min-content;
+}
+
+td a { 
+   display: block; 
+   color: var(--bs-body-color);
+}
+
+.dispatched-info {
+    margin: auto;
+    text-align: center;
+}
+
+.banner {
+    height: 100px;
+    width: auto;
+    text-align: center;
+}
+
+.banner-image {
+    max-width: 100%;
+    max-height: 100%;
+}
